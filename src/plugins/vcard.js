@@ -3,6 +3,7 @@ import yaml from 'js-yaml'
 import vCardsJS from 'vcards-js'
 import addPhoneticField from '../utils/pinyin.js'
 import { addShanghaiCallerIdAliases } from '../utils/shanghai-caller-id.js'
+import { foldVCardLine } from '../utils/vcard.js'
 
 const plugin = (file, _, cb) => {
   const path = file.path
@@ -49,6 +50,7 @@ const plugin = (file, _, cb) => {
   }
   vCard.photo.embedFromFile(path.replace('.yaml', '.png'))
   let formatted = vCard.getFormattedString()
+  formatted = formatted.replace(/^(PHOTO[^:\r\n]*:[^\r\n]*)/m, foldVCardLine)
   formatted = addPhoneticField(formatted, 'ORG')
 
   // 添加带标签的电话号码

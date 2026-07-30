@@ -9,6 +9,7 @@ import isPng from './utils/isPng.js'
 import blockList from './const/block.js'
 import schema from './const/schema.js'
 import { addShanghaiCallerIdAliases } from './utils/shanghai-caller-id.js'
+import { foldVCardLine } from './utils/vcard.js'
 
 const checkImage = (t, filePath) => {
   const buffer = readChunkSync(filePath, {
@@ -108,6 +109,13 @@ test('上海来显/仅为五位服务短号添加 021 别名', t => {
     { number: '02110016', label: '上海来显' },
     { number: '02195533', label: '上海来显' }
   ])
+})
+
+test('vCard/长照片字段按标准续行', t => {
+  const source = `PHOTO;ENCODING=b;TYPE=PNG:${'A'.repeat(200)}`
+  const folded = foldVCardLine(source)
+  t.true(folded.split('\r\n').every(line => line.length <= 75))
+  t.is(folded.replace(/\r\n /g, ''), source)
 })
 
 for (const filePath of yamlPaths) {

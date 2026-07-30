@@ -4,6 +4,7 @@ import vCardsJS from 'vcards-js'
 import {execSync} from 'child_process'
 import addPhoneticField from '../utils/pinyin.js'
 import { addShanghaiCallerIdAliases } from '../utils/shanghai-caller-id.js'
+import { foldVCardLine } from '../utils/vcard.js'
 
 const plugin = (file, _, cb) => {
   const path = file.path
@@ -52,6 +53,7 @@ const plugin = (file, _, cb) => {
   let rev = new Date(Math.max(new Date(lastYamlChangeDateString), new Date(lastPngChangeDateString))).toISOString()
 
   let formatted = vCard.getFormattedString()
+  formatted = formatted.replace(/^(PHOTO[^:\r\n]*:[^\r\n]*)/m, foldVCardLine)
   formatted = formatted.replace(/REV:[\d\-:T\.Z]+/, 'REV:' + rev)
   formatted = addPhoneticField(formatted, 'ORG')
 
