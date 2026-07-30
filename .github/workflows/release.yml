@@ -42,7 +42,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   docker-build:
-    if: ${{ secrets.DOCKER_TOKEN != '' }}
+    # 此 Fork 仅发布可导入的 vCard 文件；未配置 Docker Hub 凭据时不构建镜像。
+    if: false
     runs-on: ubuntu-latest
     needs: release-build
     steps:
