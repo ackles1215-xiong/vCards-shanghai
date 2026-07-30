@@ -8,6 +8,7 @@ import prettyBytes from 'pretty-bytes'
 import isPng from './utils/isPng.js'
 import blockList from './const/block.js'
 import schema from './const/schema.js'
+import { addShanghaiCallerIdAliases } from './utils/shanghai-caller-id.js'
 
 const checkImage = (t, filePath) => {
   const buffer = readChunkSync(filePath, {
@@ -97,6 +98,16 @@ test('Validation/no-duplicate-phones', t => {
     0,
     `发现重复电话号码:\n${duplicates.join('\n')}`
   )
+})
+
+test('上海来显/仅为五位服务短号添加 021 别名', t => {
+  t.deepEqual(addShanghaiCallerIdAliases([10016, 95533, 4000100100]), [
+    10016,
+    95533,
+    4000100100,
+    { number: '02110016', label: '上海来显' },
+    { number: '02195533', label: '上海来显' }
+  ])
 })
 
 for (const filePath of yamlPaths) {

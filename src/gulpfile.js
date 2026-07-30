@@ -12,6 +12,7 @@ import concatFolders from 'gulp-concat-folders'
 import plugin_vcard from './plugins/vcard.js'
 import plugin_vcard_ext from './plugins/vcard-ext.js'
 import yaml from 'js-yaml'
+import { addShanghaiCallerIdAliases } from './utils/shanghai-caller-id.js'
 
 const generator = () => {
   return gulp.src('data/*/*.yaml')
@@ -85,7 +86,7 @@ const webBuild = async () => {
         
         vcardsData.push({
           organization: data.basic.organization,
-          phones: data.basic.cellPhone || [],
+          phones: addShanghaiCallerIdAliases(data.basic.cellPhone),
           url: data.basic.url || null,
           emails: data.basic.workEmail || [],
           category: category,

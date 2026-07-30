@@ -2,11 +2,13 @@ import fs from 'fs'
 import yaml from 'js-yaml'
 import vCardsJS from 'vcards-js'
 import addPhoneticField from '../utils/pinyin.js'
+import { addShanghaiCallerIdAliases } from '../utils/shanghai-caller-id.js'
 
 const plugin = (file, _, cb) => {
   const path = file.path
   const data = fs.readFileSync(path, 'utf8')
   const json = yaml.load(data)
+  json.basic.cellPhone = addShanghaiCallerIdAliases(json.basic.cellPhone)
 
   // 分离带标签和不带标签的电话号码
   const labeledPhones = []
