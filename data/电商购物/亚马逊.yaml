@@ -3,3 +3,7 @@ basic:
   cellPhone:
     - 4008105666
   url: https://www.amazon.cn/
+  workEmail:
+    - no-reply@amazonaws.com
+    - account-update-no-reply@signin.aws
+    - password-reset-no-reply@verify.signin.aws

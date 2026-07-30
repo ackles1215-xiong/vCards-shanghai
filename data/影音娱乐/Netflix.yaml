@@ -1,0 +1,5 @@
+basic:
+  organization: Netflix
+  workEmail:
+    - info@members.netflix.com
+  url: https://www.netflix.com/

@@ -10,6 +10,7 @@ basic:
     - number: +852 31078333
       label: 香港
   workEmail:
+    - TradingAssistant@interactivebrokers.com
     - donotreply@interactivebrokers.com
     - donotreply@email.interactivebrokers.com
     - noresponse@interactivebrokers-email.com

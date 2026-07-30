@@ -7,6 +7,7 @@ basic:
     - number: +852 39882222
       label: 香港以外地区客户服务热线
   workEmail:
+    - its@bochk.com
     - its_boc@bochk.com
     - its_info@bochk.com
     - e-statement@bochk.com

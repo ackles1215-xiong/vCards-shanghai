@@ -1,0 +1,5 @@
+basic:
+  organization: LinkedIn
+  workEmail:
+    - messages-noreply@linkedin.com
+  url: https://www.linkedin.com/
