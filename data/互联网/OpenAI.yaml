@@ -1,6 +1,7 @@
 basic:
   organization: OpenAI
   workEmail:
+    - noreply@email.openai.com
     - noreply@tm.openai.com
     - otp@tm1.openai.com
   url: https://openai.com/
